@@ -1,3 +1,21 @@
-p {
-    font-style: italic;
+#container {
+    width: 90vw;
+    height: 90vh;
+    border: 1px solid red;
+    margin: auto;
+    display: flex;
+    flex: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+}
+#space {
+    border: 1px solid blue;
+    width: 60cqw;
+    height: 85cqh;
+}
+#description{
+    border: 1px solid brown;
+    width: 25cqw;
+    height: 85cqh;
 }
