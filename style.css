@@ -10,7 +10,7 @@
     align-content: center;
 }
 #space {
-    border: 1px solid blue;
+    background-color: rgb(194, 196, 196);
     width: 60cqw;
     height: 85cqh;
 }
@@ -18,4 +18,13 @@
     border: 1px solid brown;
     width: 25cqw;
     height: 85cqh;
+}
+#creator{
+    border: 1px solid gray;
+}
+
+.newDiv{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
 }
