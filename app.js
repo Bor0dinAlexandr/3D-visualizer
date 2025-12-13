@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
-
-app.use(express.static("html"));
+const htmlCodePath = __dirname + "/public/html/";
+app.use(express.static("public"));
 
 app.get("/", (require, response)=>{
-    response.sendFile("index.html");
-})
+    console.log(htmlCodePath + "index.html");
+    response.sendFile(htmlCodePath + "index.html");
+});
 
 app.listen(3000);
