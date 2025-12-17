@@ -13,8 +13,22 @@
             <div id="space"></div>
             <div id="description">
                 <div id="creator">
-                    <input id="creatorCheckbox" type="checkbox"/>
-                    <label for="creatorCheckbox">Режим создания</label>
+                    <input id="creatorRadioBox" type="radio" name="descriptionRadio" checked/>
+                    <label for="creatorRadioBox">Режим создания</label>
+                </div>
+                <div id="editor">
+                    <div>
+                        <input id="editorRadioBox" type="radio" name="descriptionRadio"/>
+                        <label for="editorRadioBox">Режим редактирования</label>
+                    </div>
+                    <div>
+                        <label for="editorPositionX">X: </label>
+                        <input id="editorPositionX" class="editorPosition" disabled type="number" placeholder="?" min="0"/>
+                    </div>
+                    <div>
+                        <label for="editorPositionY">Y: </label>
+                        <input id="editorPositionY" class="editorPosition" disabled type="number" placeholder="?" min="0"/>
+                    </div>
                 </div>
             </div>
         </div>

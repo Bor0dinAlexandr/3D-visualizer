@@ -21,8 +21,15 @@
     width: 25cqw;
     height: 85cqh;
 }
-#creator{
+#creator, #editor, .editorPosition{
     border: 1px solid gray;
+}
+#editor{
+    display: flex;
+    flex-direction: column;
+}
+.editorPosition{
+
 }
 
 .newDiv{
