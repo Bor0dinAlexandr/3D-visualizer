@@ -13,8 +13,14 @@
             <div id="space"></div>
             <div id="description">
                 <div id="creator">
-                    <input id="creatorRadioBox" type="radio" name="descriptionRadio" checked/>
-                    <label for="creatorRadioBox">Режим создания</label>
+                    <div>
+                        <input id="creatorRadioBox" type="radio" name="descriptionRadio" checked/>
+                        <label for="creatorRadioBox">Режим создания</label>
+                    </div>
+                    <div>
+                        <label for="creatorColor">Цвет: </label>
+                        <input id="creatorColor" type="color" name="creatorColor" value="#0000ff"/>
+                    </div>
                 </div>
                 <div id="editor">
                     <div>
@@ -23,11 +29,15 @@
                     </div>
                     <div>
                         <label for="editorPositionX">X: </label>
-                        <input id="editorPositionX" class="editorPosition" disabled type="number" placeholder="?" min="0"/>
+                        <input id="editorPositionX" class="editorPosition" disabled type="number" placeholder="?" min="0" inputmode="numeric"/>
                     </div>
                     <div>
                         <label for="editorPositionY">Y: </label>
-                        <input id="editorPositionY" class="editorPosition" disabled type="number" placeholder="?" min="0"/>
+                        <input id="editorPositionY" class="editorPosition" disabled type="number" placeholder="?" min="0" inputmode="numeric"/>
+                    </div>
+                    <div>
+                        <label for="editorColor">Цвет: </label>
+                        <input id="editorColor" type="color" name="editorColor" value="#0000ff" disabled/>
                     </div>
                 </div>
             </div>

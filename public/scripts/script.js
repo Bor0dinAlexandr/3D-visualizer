@@ -1,17 +1,20 @@
 const space = document.getElementById("space");
 
-let currentDiv;
+let currentDiv; //переменная для хранения ссылки на Div
 
 const creatorRadioBox = document.getElementById("creatorRadioBox");
-const editorRadioBox = document.getElementById("editorRadioBox");
+const creatorColor = document.getElementById("creatorColor");
 
+const editorRadioBox = document.getElementById("editorRadioBox");
 const editorPositionY = document.getElementById("editorPositionY");
 const editorPositionX = document.getElementById("editorPositionX");
+const editorColor = document.getElementById("editorColor");
 
 //Объект для получения метрик с помощю регулярных выражений
 const classesRegex = {
     x: /(?<=left-\[)\d+/,
     y: /(?<=top-\[)\d+/,
+    bg: /(?<=bg-\[)\#[a-fA-F0-9]+/,
 }
 
 //Функция заполнения полей редактирования метриками Div
@@ -21,6 +24,9 @@ const fillEditors = (metrics) => {
 
     editorPositionY.removeAttribute("disabled");
     editorPositionY.value = Number(metrics.y);
+
+    editorColor.removeAttribute("disabled");
+    editorColor.value = metrics.bg;
 }
 
 //Получение позиции рабочего пространства
@@ -38,7 +44,8 @@ const  getXYToSpace = (elem) => {
 const getMetricsToDiv = (classes) => {
     const elemX = classes.match(classesRegex.x);
     const elemY = classes.match(classesRegex.y);
-    return {x: elemX, y: elemY};
+    const elemBg = classes.match(classesRegex.bg);
+    return {x: elemX, y: elemY, bg: elemBg};
 }
 
 //Изменение метрики Div
@@ -51,7 +58,7 @@ const setMetricsForDiv = (nameMetrics, scaleMetrics) => {
 const createDiv = (event) =>{
     const spaceXY = getXYToSpace(space);
 
-    const newDiv = `<div class="newDiv left-[${event.x- spaceXY.x}px] top-[${event.y - spaceXY.y}px]"></div>`;
+    const newDiv = `<div class="newDiv left-[${event.x- spaceXY.x}px] top-[${event.y - spaceXY.y}px] bg-[${creatorColor.value}]"></div>`;
 
     space.innerHTML += newDiv;
 }
@@ -80,3 +87,4 @@ space.addEventListener("click", event=>clickSpace(event)); //нажатие по
 
 editorPositionX.addEventListener("input", ()=>setMetricsForDiv("x", editorPositionX.value)); //редактирование позиционирования по x
 editorPositionY.addEventListener("input", ()=>setMetricsForDiv("y", editorPositionY.value)); //редактирование позиционирования по y
+editorColor.addEventListener("input", ()=>setMetricsForDiv("bg", editorColor.value))

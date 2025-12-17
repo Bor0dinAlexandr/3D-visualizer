@@ -21,17 +21,18 @@
     width: 25cqw;
     height: 85cqh;
 }
-#creator, #editor, .editorPosition{
-    border: 1px solid gray;
-}
-#editor{
+#creator, #editor{
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
+}
+
+input {
+    border: 1px solid gray;
 }
 
 .newDiv{
     width: 100px;
     height: 100px;
-    background-color: blue;
     position: absolute;
 }
