@@ -2,18 +2,26 @@ const space = document.getElementById("space");
 
 const creatorCheckbox = document.getElementById("creatorCheckbox");
 
-const createDiv = (event) =>{
-    if (creatorCheckbox.checked){
-        const boundingClientRect = space.getBoundingClientRect();
+const  getXYonElement = (elem) => {
+    const boundingClientRect = elem.getBoundingClientRect();
         const {x, y} = boundingClientRect;
         
-        const spaceX = Math.floor(parseInt(x));
-        const spaceY = Math.floor(parseInt(y));
+        const elemX = Math.floor(parseInt(x));
+        const elemY = Math.floor(parseInt(y));
 
-        const newDiv = `<div class="newDiv left-[${event.x- spaceX}px] top-[${event.y - spaceY}px]"></div>`;
-        space.innerHTML += newDiv;
-        creatorCheckbox.checked = false;
-    }
+        return { x: elemX, y: elemY};
 }
 
-space.addEventListener("click", (event)=>{createDiv(event)});
+const createDiv = (event) =>{
+    const spaceXY = getXYonElement(space);
+    const newDiv = `<div class="newDiv left-[${event.x- spaceXY.x}px] top-[${event.y - spaceXY.y}px]"></div>`;
+    space.innerHTML += newDiv;
+}
+
+const clickDiv = (event) =>{
+    if (creatorCheckbox.checked){
+        createDiv(event);
+    } 
+}
+
+space.addEventListener("click", (event)=>{clickDiv(event)});
