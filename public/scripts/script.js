@@ -1,103 +1,62 @@
+import { Div } from "./TargetDiv.js";
+
 const space = document.getElementById("space");
-
-let targetDiv; //переменная для хранения ссылки на Div
-
 const creatorRadioBox = document.getElementById("creatorRadioBox");
+const editorRadioBox = document.getElementById("editorRadioBox");
+
 const creatorColor = document.getElementById("creatorColor");
 
-const editorRadioBox = document.getElementById("editorRadioBox");
-const editorPositionY = document.getElementById("editorPositionY");
-const editorPositionX = document.getElementById("editorPositionX");
-const editorColor = document.getElementById("editorColor");
-
-//Объект для получения метрик с помощю регулярных выражений
-const classesRegex = {
-    x: /(?<=left-\[)\d+/,
-    y: /(?<=top-\[)\d+/,
-    bg: /(?<=bg-\[)\#[a-fA-F0-9]+/,
+const editors = {//список полей редактирования
+    positionY: document.getElementById("editorPositionY"),
+    positionX: document.getElementById("editorPositionX"),
+    color: document.getElementById("editorColor"),
 }
 
-//Функция заполнения полей редактирования метриками Div
-const fillEditors = (metrics) => {
-    editorPositionX.removeAttribute("disabled");
-    editorPositionX.value = Number(metrics.x);
+const div = new Div(); //переменная для работы с div
 
-    editorPositionY.removeAttribute("disabled");
-    editorPositionY.value = Number(metrics.y);
-
-    editorColor.removeAttribute("disabled");
-    editorColor.value = metrics.bg;
-}
-
-//Функция отчиски полей
-const clearEditors = () =>{
-    editorPositionX.setAttribute("disabled", "");
-    editorPositionX.value = "";
-
-    editorPositionY.setAttribute("disabled", "");
-    editorPositionY.value = "";
-
-    editorColor.setAttribute("disabled", "");
-}
-
-//Получение позиции рабочего пространства
-const  getXYToSpace = (elem) => {
-    const boundingClientRect = elem.getBoundingClientRect();
-        const {x, y} = boundingClientRect;
-        
-        const elemX = Math.floor(parseInt(x));
-        const elemY = Math.floor(parseInt(y));
-
-        return { x: elemX, y: elemY};
-}
-
-//Получение метрик Div
-const getMetricsToDiv = (classes) => {
-    const elemX = classes.match(classesRegex.x);
-    const elemY = classes.match(classesRegex.y);
-    const elemBg = classes.match(classesRegex.bg);
-    return {x: elemX, y: elemY, bg: elemBg};
-}
-
-//Изменение метрики Div
-const setMetricsForDiv = (nameMetrics, scaleMetrics) => {
-    if(scaleMetrics !=""){
-        targetDiv.className = targetDiv.className.replace(classesRegex[nameMetrics], scaleMetrics);
+const fillEditors = (metrics) => { //Функция заполнения полей редактирования метриками Div
+    for (let editorName in editors){
+        editors[editorName].removeAttribute("disabled");
+        editors[editorName].value = metrics[editors[editorName].dataset.editor];
     }
 }
-//Создание нового Div
-const createDiv = (event) =>{
-    const spaceXY = getXYToSpace(space);
 
-    const newDiv = `<div class="newDiv left-[${event.x- spaceXY.x}px] top-[${event.y - spaceXY.y}px] bg-[${creatorColor.value}]"></div>`;
-
-    space.innerHTML += newDiv;
+const clearEditors = () =>{//Функция отчиски полей редактирования
+    for (let editorName in editors){
+        editors[editorName].setAttribute("disabled", "");
+        editors[editorName].value = editors[editorName].dataset.defaultValue;
+    }
 }
 
-//Редактирование Div
-const editDiv = (event) => {
-        targetDiv?.classList.remove("targetDiv");
-        targetDiv = event.target;
-        targetDiv.classList.add("targetDiv");
-        const metrics = getMetricsToDiv(targetDiv.className);
-        fillEditors(metrics);
+const getMetricsForNewDiv = (event) => {//Получение мтрик для нового Div
+    const metrics = {};
+    metrics.x = event.x;
+    metrics.y = event.y;
+    metrics.color = creatorColor.value;
+    return metrics;
 }
 
-//Обработка клика по рабочему пространству
-const clickSpace = (event) =>{
+const editDiv = (target) => {//Редактирование Div
+        div.setDiv(target);
+        fillEditors(div.getMetrics());
+}
+
+const clickSpace = (event) =>{//Обработка клика по рабочему пространству
     if (creatorRadioBox.checked){
         clearEditors();
-        targetDiv?.classList.remove("targetDiv");
-        createDiv(event);
+        div.setDiv({});
+        div.createNewDiv(space, getMetricsForNewDiv(event));
     } else if (editorRadioBox.checked){
         if (event.target.classList.contains("newDiv")){
-            editDiv(event);
+            editDiv(event.target);
         };
     }
 }
 
 space.addEventListener("click", event=>clickSpace(event)); //нажатие по рабочему пространству
 
-editorPositionX.addEventListener("input", ()=>setMetricsForDiv("x", editorPositionX.value)); //редактирование позиционирования по x
-editorPositionY.addEventListener("input", ()=>setMetricsForDiv("y", editorPositionY.value)); //редактирование позиционирования по y
-editorColor.addEventListener("input", ()=>setMetricsForDiv("bg", editorColor.value))
+
+//сделать метод присвоения обработчиков событий
+editors.positionX.addEventListener("input", ()=>div.setMetrics("x", editorPositionX.value)); //редактирование позиционирования по x
+editors.positionY.addEventListener("input", ()=>div.setMetrics("y", editorPositionY.value)); //редактирование позиционирования по y
+editors.color.addEventListener("input", ()=>div.setMetrics("bg", editorColor.value)) //редактирование цвета

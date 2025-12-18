@@ -29,20 +29,20 @@
                     </div>
                     <div>
                         <label for="editorPositionX">X: </label>
-                        <input id="editorPositionX" class="editorPosition" disabled type="number" placeholder="?" min="0" inputmode="numeric"/>
+                        <input id="editorPositionX" data-editor="x" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
                     </div>
                     <div>
                         <label for="editorPositionY">Y: </label>
-                        <input id="editorPositionY" class="editorPosition" disabled type="number" placeholder="?" min="0" inputmode="numeric"/>
+                        <input id="editorPositionY" data-editor="y" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
                     </div>
                     <div>
                         <label for="editorColor">Цвет: </label>
-                        <input id="editorColor" type="color" name="editorColor" value="#0000ff" disabled/>
+                        <input id="editorColor" data-editor="bg" disabled type="color" value="#0000ff" data-default-value="#0000ff"/>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="../scripts/script.js"></script>
+        <script type="module" src="../scripts/script.js"></script>
     </body>
 </html>
