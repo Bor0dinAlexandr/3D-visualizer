@@ -36,3 +36,11 @@ input {
     height: 100px;
     position: absolute;
 }
+
+.newDiv:hover{
+    outline: 2px solid black;
+}
+
+.targetDiv{
+    outline: 2px dotted black;
+}

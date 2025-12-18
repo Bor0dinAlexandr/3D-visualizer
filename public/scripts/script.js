@@ -1,6 +1,6 @@
 const space = document.getElementById("space");
 
-let currentDiv; //переменная для хранения ссылки на Div
+let targetDiv; //переменная для хранения ссылки на Div
 
 const creatorRadioBox = document.getElementById("creatorRadioBox");
 const creatorColor = document.getElementById("creatorColor");
@@ -29,6 +29,17 @@ const fillEditors = (metrics) => {
     editorColor.value = metrics.bg;
 }
 
+//Функция отчиски полей
+const clearEditors = () =>{
+    editorPositionX.setAttribute("disabled", "");
+    editorPositionX.value = "";
+
+    editorPositionY.setAttribute("disabled", "");
+    editorPositionY.value = "";
+
+    editorColor.setAttribute("disabled", "");
+}
+
 //Получение позиции рабочего пространства
 const  getXYToSpace = (elem) => {
     const boundingClientRect = elem.getBoundingClientRect();
@@ -51,7 +62,7 @@ const getMetricsToDiv = (classes) => {
 //Изменение метрики Div
 const setMetricsForDiv = (nameMetrics, scaleMetrics) => {
     if(scaleMetrics !=""){
-        currentDiv.className = currentDiv.className.replace(classesRegex[nameMetrics], scaleMetrics);
+        targetDiv.className = targetDiv.className.replace(classesRegex[nameMetrics], scaleMetrics);
     }
 }
 //Создание нового Div
@@ -65,21 +76,23 @@ const createDiv = (event) =>{
 
 //Редактирование Div
 const editDiv = (event) => {
-    const elem = event.target;
-
-    if (elem.classList.contains("newDiv")){
-        currentDiv = event.target;
-        const metrics = getMetricsToDiv(currentDiv.className);
+        targetDiv?.classList.remove("targetDiv");
+        targetDiv = event.target;
+        targetDiv.classList.add("targetDiv");
+        const metrics = getMetricsToDiv(targetDiv.className);
         fillEditors(metrics);
-    }
 }
 
 //Обработка клика по рабочему пространству
 const clickSpace = (event) =>{
     if (creatorRadioBox.checked){
+        clearEditors();
+        targetDiv?.classList.remove("targetDiv");
         createDiv(event);
     } else if (editorRadioBox.checked){
-        editDiv(event);
+        if (event.target.classList.contains("newDiv")){
+            editDiv(event);
+        };
     }
 }
 
