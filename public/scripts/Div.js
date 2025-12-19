@@ -7,6 +7,8 @@ export class Div {
         x: /(?<=left-\[)\d+/,
         y: /(?<=top-\[)\d+/,
         bg: /(?<=bg-\[)\#[a-fA-F0-9]+/,
+        w: /(?<=w-\[)\d+/,
+        h: /(?<=h-\[)\d+/,
     }
     
     setDiv = (div) =>{//установить таргет Div
@@ -15,7 +17,7 @@ export class Div {
         this.#div.classList?.add("targetDiv");
     }
 
-    getMetrics = () => {//получить список метрик
+    getMetrics = () => {//получить список метрик для элемента
         const metrics = {};
         for (let metricsName in this.#metricsRegex){
             metrics[metricsName] = this.#div.className.match(this.#metricsRegex[metricsName]);
@@ -45,9 +47,9 @@ export class Div {
         parent.innerHTML += `<div class="newDiv 
         left-[${metrics.x- parentXY.x}px] 
         top-[${metrics.y - parentXY.y}px] 
-        bg-[${metrics.color}]
+        bg-[${metrics.bg}]
+        w-[${metrics.w}px]
+        h-[${metrics.h}px]
         "></div>`;
     }
-
-    
 }

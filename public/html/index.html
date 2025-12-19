@@ -19,7 +19,15 @@
                     </div>
                     <div>
                         <label for="creatorColor">Цвет: </label>
-                        <input id="creatorColor" type="color" name="creatorColor" value="#0000ff"/>
+                        <input id="creatorColor" class="creator" data-creator-name="bg" type="color" name="creatorColor" value="#0000ff"/>
+                    </div>
+                    <div>
+                        <label for="creatorWidth">Ширина: </label>
+                        <input id="creatorWidth" class="creator" data-creator-name="w" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
+                    </div>
+                    <div>
+                        <label for="creatorHeight">Высота: </label>
+                        <input id="creatorHeight" class="creator" data-creator-name="h" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
                     </div>
                 </div>
                 <div id="editor">
@@ -29,15 +37,23 @@
                     </div>
                     <div>
                         <label for="editorPositionX">X: </label>
-                        <input id="editorPositionX" data-editor="x" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                        <input id="editorPositionX" class="editor" data-editor-name="x" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
                     </div>
                     <div>
                         <label for="editorPositionY">Y: </label>
-                        <input id="editorPositionY" data-editor="y" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                        <input id="editorPositionY" class="editor" data-editor-name="y" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
                     </div>
                     <div>
                         <label for="editorColor">Цвет: </label>
-                        <input id="editorColor" data-editor="bg" disabled type="color" value="#0000ff" data-default-value="#0000ff"/>
+                        <input id="editorColor" class="editor" data-editor-name="bg" disabled type="color" value="#0000ff" data-default-value="#0000ff"/>
+                    </div>
+                    <div>
+                        <label for="editorWidth">Ширина: </label>
+                        <input id="editorWidth" class="editor" data-editor-name="w" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                    </div>
+                    <div>
+                        <label for="editorHeight">Высота: </label>
+                        <input id="editorHeight" class="editor" data-editor-name="h" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
                     </div>
                 </div>
             </div>

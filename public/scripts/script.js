@@ -1,47 +1,42 @@
-import { Div } from "./TargetDiv.js"; //Переименовать
+import { Div } from "./Div.js";
 
 const space = document.getElementById("space");
 const creatorRadioBox = document.getElementById("creatorRadioBox");
 const editorRadioBox = document.getElementById("editorRadioBox");
 
-const creatorColor = document.getElementById("creatorColor");
-
-const editors = {//список полей редактирования
-    positionY: document.getElementById("editorPositionY"),
-    positionX: document.getElementById("editorPositionX"),
-    color: document.getElementById("editorColor"),
-}
+const creators = document.querySelectorAll(".creator");
+const editors = document.querySelectorAll(".editor"); //NodeList полей для редактирования
 
 const div = new Div(); //переменная для работы с div
 
 const fillEditors = (metrics) => { //Функция заполнения полей редактирования метриками Div
-    for (let editorName in editors){
-        editors[editorName].removeAttribute("disabled");
-        editors[editorName].value = metrics[editors[editorName].dataset.editor];
-    }
+    editors.forEach(editor =>{
+        editor.removeAttribute("disabled");
+        editor.value = metrics[editor.dataset.editorName];
+    });
 }
 
 const clearEditors = () =>{//Функция отчиски полей редактирования
-    for (let editorName in editors){
-        editors[editorName].setAttribute("disabled", "");
-        editors[editorName].value = editors[editorName].dataset.defaultValue;
-    }
+    editors.forEach(editor =>{
+        editor.setAttribute("disabled", "");
+        editor.value = editor.dataset.defaultValue;
+    });
 }
 
-const getMetricsForNewDiv = (event) => {//Получение мтрик для нового Div
+const getMetricsForNewDiv = (event) => {//Функция получения метрик из полей создания для нового Div
     const metrics = {};
+    creators.forEach(creator => metrics[creator.dataset.creatorName] = creator.value);
     metrics.x = event.x;
     metrics.y = event.y;
-    metrics.color = creatorColor.value;
     return metrics;
 }
 
-const editDiv = (target) => {//Редактирование Div
-        div.setDiv(target);
-        fillEditors(div.getMetrics());
+const editDiv = (target) => {//Функция редактирование Div
+    div.setDiv(target);
+    fillEditors(div.getMetrics());
 }
 
-const clickSpace = (event) =>{//Обработка клика по рабочему пространству
+const clickSpace = (event) =>{//Функция обработки клика по рабочему пространству
     if (creatorRadioBox.checked){
         clearEditors();
         div.setDiv({});
@@ -55,8 +50,10 @@ const clickSpace = (event) =>{//Обработка клика по рабоче�
 
 space.addEventListener("click", event=>clickSpace(event)); //нажатие по рабочему пространству
 
+const addEventInputForEditors = () =>{ //Функция присвоения полям редактирования своих обработчиков
+    editors.forEach(editor =>{
+        editor.addEventListener("input", ()=>div.setMetrics(editor.dataset.editorName, editor.value));
+    });
+}
 
-//сделать метод присвоения обработчиков событий
-editors.positionX.addEventListener("input", ()=>div.setMetrics("x", editorPositionX.value)); //редактирование позиционирования по x
-editors.positionY.addEventListener("input", ()=>div.setMetrics("y", editorPositionY.value)); //редактирование позиционирования по y
-editors.color.addEventListener("input", ()=>div.setMetrics("bg", editorColor.value)) //редактирование цвета
+addEventInputForEditors();
