@@ -1,4 +1,4 @@
-import { Div } from "./TargetDiv.js";
+import { Div } from "./TargetDiv.js"; //Переименовать
 
 const space = document.getElementById("space");
 const creatorRadioBox = document.getElementById("creatorRadioBox");
