@@ -11,26 +11,45 @@
 }
 #space {
     background-color: rgb(194, 196, 196);
-    width: 60cqw;
+    width: 65cqw;
     height: 85cqh;
     position: relative;
     overflow: auto;
 }
 #description{
     border: 1px solid brown;
-    width: 25cqw;
+    width: max-content;
     height: 85cqh;
 }
 #creator, #editor{
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+    height: 50%;
 }
 
-input {
+.creator, .editor {
     border: 1px solid gray;
 }
 
+.containerMetric label, .containerMetric input{
+    display: block;
+    width: 8cqw;
+    margin: 0 ;
+}
+
+.containerMetric{
+    display: flex;
+    flex: auto 0 0;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 5px 2cqw;
+ }
+ 
 .newDiv{
     position: absolute;
 }
