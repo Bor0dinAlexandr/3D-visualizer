@@ -7,6 +7,8 @@ export class Div {
         x: /(?<=left-\[)\d+/,
         y: /(?<=top-\[)\d+/,
         bg: /(?<=bg-\[)\#[a-fA-F0-9]+/,
+        w: /(?<=w-\[)\d+/,
+        h: /(?<=h-\[)\d+/,
     }
     
     setDiv = (div) =>{//установить таргет Div
@@ -46,6 +48,8 @@ export class Div {
         left-[${metrics.x- parentXY.x}px] 
         top-[${metrics.y - parentXY.y}px] 
         bg-[${metrics.color}]
+        w-[${metrics.w}px]
+        h-[${metrics.h}px]
         "></div>`;
     }
 

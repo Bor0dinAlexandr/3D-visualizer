@@ -21,6 +21,14 @@
                         <label for="creatorColor">Цвет: </label>
                         <input id="creatorColor" type="color" name="creatorColor" value="#0000ff"/>
                     </div>
+                    <div>
+                        <label for="creatorWidth">Ширина: </label>
+                        <input id="creatorWidth" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
+                    </div>
+                    <div>
+                        <label for="creatorHeight">Высота: </label>
+                        <input id="creatorHeight" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
+                    </div>
                 </div>
                 <div id="editor">
                     <div>
@@ -38,6 +46,14 @@
                     <div>
                         <label for="editorColor">Цвет: </label>
                         <input id="editorColor" data-editor="bg" disabled type="color" value="#0000ff" data-default-value="#0000ff"/>
+                    </div>
+                    <div>
+                        <label for="editorWidth">Ширина: </label>
+                        <input id="editorWidth" data-editor="w" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                    </div>
+                    <div>
+                        <label for="editorHeight">Высота: </label>
+                        <input id="editorHeight" data-editor="h" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
                     </div>
                 </div>
             </div>
