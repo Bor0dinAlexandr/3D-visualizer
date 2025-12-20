@@ -10,55 +10,87 @@
     <body>
         <script src="https://cdn.tailwindcss.com"></script>
         <div id="container">
+            <div id="three"></div>
             <div id="space"></div>
-            <div id="description">
-                <div id="creator">
-                    <div>
-                        <input id="creatorRadioBox" type="radio" name="descriptionRadio" checked/>
-                        <label for="creatorRadioBox">Режим создания</label>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="creatorColor">Цвет: </label>
-                        <input id="creatorColor" class="creator" data-creator-name="bg" type="color" name="creatorColor" value="#0000ff"/>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="creatorWidth">Ширина: </label>
-                        <input id="creatorWidth" class="creator" data-creator-name="w" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="creatorHeight">Высота: </label>
-                        <input id="creatorHeight" class="creator" data-creator-name="h" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
-                    </div>
-                </div>
-                <div id="editor">
-                    <div>
-                        <input id="editorRadioBox" type="radio" name="descriptionRadio"/>
-                        <label for="editorRadioBox">Режим редактирования</label>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="editorPositionX">X: </label>
-                        <input id="editorPositionX" class="editor" data-editor-name="x" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="editorPositionY">Y: </label>
-                        <input id="editorPositionY" class="editor" data-editor-name="y" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="editorColor">Цвет: </label>
-                        <input id="editorColor" class="editor" data-editor-name="bg" disabled type="color" value="#0000ff" data-default-value="#0000ff"/>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="editorWidth">Ширина: </label>
-                        <input id="editorWidth" class="editor" data-editor-name="w" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
-                    </div>
-                    <div class="containerMetric">
-                        <label for="editorHeight">Высота: </label>
-                        <input id="editorHeight" class="editor" data-editor-name="h" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+            <div id="tabControl">
+
+                <div class="tabNavigation">
+                    <div class="tabBtn">
+                        <input id="tabBtnCreator" type="radio" name="tabBtn" data-page-id="tabPageCreator" checked/>
+                        <label for="tabBtnCreator">Создание</label>
+                    </div>
+                    <div class="tabBtn">
+                        <input id="tabBtnEditor" type="radio" name="tabBtn" data-page-id="tabPageEditor"/>
+                        <label for="tabBtnEditor">Редактирование</label>
+                    </div>
+                    <div class="tabBtn">
+                        <input id="tabBtnControl" type="radio" name="tabBtn" data-page-id="tabPageControl"/>
+                        <label for="tabBtnControl">Управление</label>
+                    </div>
+                </div>
+
+                <div class="tabPages">
+
+                    <div id="tabPageCreator" class="tabPage">
+
+                        <div class="containerMetric">
+                            <label for="creatorColor">Цвет: </label>
+                            <input id="creatorColor" class="creator" data-creator-name="bg" type="color" name="creatorColor" value="#0000ff"/>
+                        </div>
+
+                        <div class="containerMetric">
+                            <label for="creatorWidth">Ширина: </label>
+                            <input id="creatorWidth" class="creator" data-creator-name="w" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
+                        </div>
+
+                        <div class="containerMetric">
+                            <label for="creatorHeight">Высота: </label>
+                            <input id="creatorHeight" class="creator" data-creator-name="h" type="number" placeholder="?" min="0" inputmode="numeric" value="100"/>
+                        </div>
+
+                    </div>
+
+                    <div id="tabPageEditor" class="tabPage">
+
+                        <div class="containerMetric">
+                            <label for="editorPositionX">X: </label>
+                            <input id="editorPositionX" class="editor" data-editor-name="x" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                        </div>
+
+                        <div class="containerMetric">
+                            <label for="editorPositionY">Y: </label>
+                            <input id="editorPositionY" class="editor" data-editor-name="y" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                        </div>
+
+                        <div class="containerMetric">
+                            <label for="editorColor">Цвет: </label>
+                            <input id="editorColor" class="editor" data-editor-name="bg" disabled type="color" value="#0000ff" data-default-value="#0000ff"/>
+                        </div>
+
+                        <div class="containerMetric">
+                            <label for="editorWidth">Ширина: </label>
+                            <input id="editorWidth" class="editor" data-editor-name="w" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                        </div>
+
+                        <div class="containerMetric">
+                            <label for="editorHeight">Высота: </label>
+                            <input id="editorHeight" class="editor" data-editor-name="h" disabled type="number" placeholder="?" min="0" inputmode="numeric" data-default-value=""/>
+                        </div>
+
+                    </div>
+
+                    <div id="tabPageControl" class="tabPage">
+                        Будет позже
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <script src="../scripts/tabControl.js"></script>
         <script type="module" src="../scripts/script.js"></script>
+
     </body>
 </html>

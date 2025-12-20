@@ -1,8 +1,8 @@
 import { Div } from "./Div.js";
 
 const space = document.getElementById("space");
-const creatorRadioBox = document.getElementById("creatorRadioBox");
-const editorRadioBox = document.getElementById("editorRadioBox");
+const creatorRadioBox = document.getElementById("tabBtnCreator");
+const editorRadioBox = document.getElementById("tabBtnEditor");
 
 const creators = document.querySelectorAll(".creator");
 const editors = document.querySelectorAll(".editor"); //NodeList полей для редактирования
@@ -37,6 +37,7 @@ const editDiv = (target) => {//Функция редактирование Div
 }
 
 const clickSpace = (event) =>{//Функция обработки клика по рабочему пространству
+    console.log("click");
     if (creatorRadioBox.checked){
         clearEditors();
         div.setDiv({});
@@ -57,3 +58,4 @@ const addEventInputForEditors = () =>{ //Функция присвоения п�
 }
 
 addEventInputForEditors();
+console.log(space);

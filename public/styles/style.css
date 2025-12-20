@@ -1,42 +1,58 @@
 #container {
-    width: 90vw;
-    height: 90vh;
+    width: 100vw;
+    height: 100vh;
     border: 1px solid red;
     margin: auto;
     display: flex;
-    flex: auto;
+    flex: 1 0 auto;
     flex-wrap: wrap;
-    justify-content: space-around;
     align-content: center;
+}
+#three{
+    width: 15%;
+    border: 1px solid green
 }
 #space {
     background-color: rgb(194, 196, 196);
-    width: 65cqw;
-    height: 85cqh;
+    width: 70%;
+    height: 100%;
     position: relative;
     overflow: auto;
 }
-#description{
-    border: 1px solid brown;
-    width: max-content;
-    height: 85cqh;
+#tabControl{
+    width: 15%;
+    border: 1px solid blue;
 }
-#creator, #editor{
-    border: 1px solid black;
+.tabNavigation{
     display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    flex-wrap: nowrap;
-    height: 50%;
+    flex: 1 1 auto;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.creator, .editor {
+.tabBtn{
+    outline: 1px solid gray;
+    padding: 3px 5px;
+    align-content: center;
+}
+.tabBtn>input{
+    display: none;
+}
+.tabBtn>label{
+    text-overflow: ellipsis;
+}
+.tabPages>div{
+    display: none;
+}
+
+.containerMetric>input{
     border: 1px solid gray;
 }
 
-.containerMetric label, .containerMetric input{
+.containerMetric>label, .containerMetric>input{
     display: block;
-    width: 8cqw;
+    width: 15ch;
     margin: 0 ;
 }
 
@@ -48,7 +64,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: 5px 2cqw;
- }
+}
  
 .newDiv{
     position: absolute;
