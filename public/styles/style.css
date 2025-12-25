@@ -10,7 +10,7 @@
 }
 #three{
     width: 15%;
-    border: 1px solid green
+    border: 1px solid gray
 }
 #space {
     background-color: rgb(194, 196, 196);
@@ -21,7 +21,7 @@
 }
 #tabControl{
     width: 15%;
-    border: 1px solid blue;
+    border: 1px solid gray;
 }
 
 
