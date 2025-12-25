@@ -58,4 +58,3 @@ const addEventInputForEditors = () =>{ //Функция присвоения п�
 }
 
 addEventInputForEditors();
-console.log(space);

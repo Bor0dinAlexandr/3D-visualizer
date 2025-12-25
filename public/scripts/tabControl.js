@@ -4,6 +4,7 @@ const tabBtns = document.querySelectorAll(".tabBtn");
 
 tabBntInput.forEach(input =>{
     input.addEventListener("change", ()=>{
+        input.parentElement.classList.add("tabBtnTarget");
         tabPages.forEach(tabPage => {
             tabPage.style.display = "none";
         })
@@ -15,10 +16,16 @@ tabBntInput.forEach(input =>{
 
 tabBtns.forEach(btn => {
     btn.addEventListener("click", (event)=>{
+        tabBtns.forEach(btn =>{
+           btn.classList.remove("tabBtnTarget"); 
+        });
         event.target.childNodes.forEach(children =>{
-            children.tagName === "INPUT" ? children.dispatchEvent(new Event("change")) : false;
+            children.dispatchEvent(new Event("change"));
         })
+
     })
 })
+
+
 
 tabBntInput[0].dispatchEvent(new Event("change"));

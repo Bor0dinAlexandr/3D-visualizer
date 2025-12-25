@@ -23,25 +23,33 @@
     width: 15%;
     border: 1px solid blue;
 }
+
+
 .tabNavigation{
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 1 33%;
     align-content: center;
     justify-content: center;
     width: 100%;
+    flex-wrap: nowrap;
 }
-
 .tabBtn{
-    outline: 1px solid gray;
-    padding: 3px 5px;
+    border: 1px solid gray;
+    padding: 3px 3px;
     align-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tabBtn:hover{
+    overflow:visible;
+}
+.tabBtnTarget{
+    border-bottom: none;
 }
 .tabBtn>input{
     display: none;
 }
-.tabBtn>label{
-    text-overflow: ellipsis;
-}
+
 .tabPages>div{
     display: none;
 }
